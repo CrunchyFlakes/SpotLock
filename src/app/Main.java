@@ -6,6 +6,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
@@ -16,6 +17,7 @@ public class Main extends Application {
         final FXMLLoader loader = new FXMLLoader(getClass().getResource("sample.fxml"));
         Parent root = loader.load();
         primaryStage.setTitle("SpotLock");
+        primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("spotlock.png")));
         primaryStage.setScene(new Scene(root, 400, 300));
         primaryStage.addEventHandler(WindowEvent.WINDOW_SHOWN, new EventHandler<WindowEvent>() {
             public void handle(WindowEvent event) {
