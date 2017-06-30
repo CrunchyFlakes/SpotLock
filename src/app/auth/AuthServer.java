@@ -37,7 +37,7 @@ public class AuthServer {
     class MyHandler implements HttpHandler {
         public void handle(HttpExchange t) throws IOException {
             responseQuery = t.getRequestURI().getQuery();
-            String response = "Finished\n" + responseQuery;
+            String response = "Finished\nYou can close this window now.";
             t.sendResponseHeaders(200, response.length());
             OutputStream outstream = t.getResponseBody();
             outstream.write(response.getBytes());
