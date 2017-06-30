@@ -1,5 +1,6 @@
 package app.auth;
 
+import app.Main;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -132,7 +133,7 @@ public class AuthApi {
         new Thread(new Runnable() {
             public void run() {
                 try {
-                    if (System.getProperty("os.name").equals("Linux")) {
+                    if (Main.getOS().equals("linux")) {
                         Runtime runtime = Runtime.getRuntime();
                         runtime.exec("xdg-open " + uriBuilder.toString());
                     } else if (Desktop.isDesktopSupported()) {
@@ -169,27 +170,39 @@ public class AuthApi {
     }
 
     private static void saveToken(String token) throws Exception {
-
-        File dir = new File(System.getProperty("user.home"), ".spotlock");
-        if (dir.exists() || dir.mkdirs()) {
+        String os = Main.getOS();
+        File tokenFile;
+        if (os.equals("windows")) {
+            tokenFile = new File(System.getenv("APPDATA") + "/SpotLock/token");
+        } else if (os.equals("linux")) {
+            tokenFile = new File(System.getProperty("user.home"), ".spotlock/token");
+        } else {
+            tokenFile = new File("not existing directory");
+        }
+        if (tokenFile.exists() || tokenFile.getParentFile().mkdirs()) {
             String tokenencrypted = Base64.encodeBase64String(token.getBytes());
-            PrintWriter writer = new PrintWriter(System.getProperty("user.home") + "/.spotlock" + "/refreshtoken.txt", "UTF-8");
+            PrintWriter writer = new PrintWriter(tokenFile, "UTF-8");
             writer.println(tokenencrypted);
             writer.close();
-        } else if (!dir.canWrite()) {
+        } else if (!tokenFile.canWrite()) {
             System.err.println("no writing permissions for saving token");
         }
 
     }
 
     public static void loadToken() throws Exception {
-
-        File tokenFile = new File(System.getProperty("user.home"), ".spotlock/refreshtoken.txt");
+        String os = Main.getOS();
+        File tokenFile;
+        if (os.equals("windows")) {
+            tokenFile = new File(System.getenv("APPDATA") + "/SpotLock/token");
+        } else if (os.equals("linux")) {
+            tokenFile = new File(System.getProperty("user.home"), ".spotlock/token");
+        } else {
+            tokenFile = new File("not existing file");
+        }
         if (tokenFile.exists()) {
             String encrypted = new BufferedReader(new FileReader(tokenFile)).readLine();
             refreshToken = new String(Base64.decodeBase64(encrypted.getBytes()));
-        } else {
-            System.out.println("file doesnt exist");
         }
     }
 }

@@ -12,6 +12,8 @@ import javafx.stage.WindowEvent;
 
 public class Main extends Application {
 
+    private static String os;
+
     @Override
     public void start(Stage primaryStage) throws Exception{
         final FXMLLoader loader = new FXMLLoader(getClass().getResource("sample.fxml"));
@@ -31,6 +33,21 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
+        String rawos = System.getProperty("os.name").toLowerCase();
+        if (rawos.indexOf("win") >= 0) {
+            os = "windows";
+        } else if (rawos.indexOf("nux") >= 0) {
+            os = "linux";
+        } else if (rawos.indexOf("mac") >= 0) {
+            os = "mac";
+            os = "unsupported";
+        } else {
+            os = "unsupported";
+        }
         launch(args);
+    }
+
+    public static String getOS() {
+        return os;
     }
 }
