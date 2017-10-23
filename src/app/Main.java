@@ -33,7 +33,6 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
-        System.out.println("test");
         String rawos = System.getProperty("os.name").toLowerCase();
         if (rawos.indexOf("win") >= 0) {
             os = "windows";

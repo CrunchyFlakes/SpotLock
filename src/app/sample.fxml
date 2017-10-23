@@ -7,14 +7,14 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="300.0" maxWidth="400.0" minHeight="300.0" minWidth="400.0" prefHeight="300.0" prefWidth="400.0" style="-fx-background-color: #FFF; -fx-border-color: #FFF;" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.LockController">
+<Pane maxHeight="300.0" maxWidth="400.0" minHeight="300.0" minWidth="400.0" prefHeight="300.0" prefWidth="400.0" style="-fx-background-color: #191919;" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.LockController">
     <children>
-        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="92.0" layoutY="14.0" prefHeight="37.0" prefWidth="216.0" style="-fx-background-color: linear-gradient(#8BC34A 0%, #33691E 100%); -fx-border-color: #FFFFFF;" text="Lock Spotify Volume" textAlignment="CENTER">
+        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="92.0" layoutY="14.0" prefHeight="37.0" prefWidth="216.0" style="-fx-text-fill: #FFFFFF; -fx-background-color: #191919; -fx-border-color: #191919;" text="SpotLock" textAlignment="CENTER">
             <font>
                 <Font name="Open Sans Bold" size="20.0" />
             </font>
         </Label>
-        <Button fx:id="lockButton" layoutX="122.0" layoutY="113.0" mnemonicParsing="false" onAction="#lockButtonHandler" prefHeight="75.0" prefWidth="157.0" text="Lock" />
+        <Button fx:id="lockButton" alignment="CENTER" layoutX="138.0" layoutY="88.0" mnemonicParsing="false" onAction="#lockButtonHandler" prefHeight="75.0" prefWidth="157.0" stylesheets="@../css/button_opened.css" textAlignment="CENTER" />
         <MenuButton fx:id="menuButton" layoutX="14.0" layoutY="261.0" mnemonicParsing="false" text="loading">
             <items>
                 <MenuItem fx:id="logoutItem" mnemonicParsing="false" onAction="#logoutItemHandler" text="Logout" />

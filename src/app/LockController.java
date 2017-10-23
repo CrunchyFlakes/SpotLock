@@ -6,6 +6,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
+import javafx.scene.image.Image;
+import javafx.scene.layout.*;
 import org.apache.http.auth.AUTH;
 
 import java.io.IOException;
@@ -95,7 +97,6 @@ public class LockController {
             menuButton.setText("Please login!");
             logoutItem.setText("Login");
             locked = false;
-            lockButton.setText("Lock");
             lockButton.setDisable(true);
         } else if (loggedOut) {
             login();
@@ -105,7 +106,9 @@ public class LockController {
     @FXML
     protected void lockButtonHandler() {
         if (!locked) {
-            lockButton.setText("unlock");
+            lockButton.getStylesheets().clear();
+            lockButton.getStylesheets().add("/css/button_locked.css");
+            System.out.println("locked");
             try {
                 volume = Api.getPlaybackInfo().getJSONObject("device").getInt("volume_percent");
             } catch (IOException e) {
@@ -114,7 +117,9 @@ public class LockController {
             locked = true;
         } else {
             locked = false;
-            lockButton.setText("lock");
+            lockButton.getStylesheets().clear();
+            lockButton.getStylesheets().add("/css/button_opened.css");
+            System.out.println("unlocked");
         }
 
         new Thread(new Runnable() {
