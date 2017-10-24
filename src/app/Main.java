@@ -1,11 +1,13 @@
 package app;
 
 import app.auth.AuthApi;
+import de.codecentric.centerdevice.javafxsvg.SvgImageLoaderFactory;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.SceneAntialiasing;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -20,7 +22,7 @@ public class Main extends Application {
         Parent root = loader.load();
         primaryStage.setTitle("SpotLock");
         primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("spotlock.png")));
-        primaryStage.setScene(new Scene(root, 400, 300));
+        primaryStage.setScene(new Scene(root, 400, 300, true, SceneAntialiasing.BALANCED));
         primaryStage.addEventHandler(WindowEvent.WINDOW_SHOWN, new EventHandler<WindowEvent>() {
             public void handle(WindowEvent event) {
                 LockController controller = loader.getController();
