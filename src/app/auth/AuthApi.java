@@ -38,8 +38,16 @@ public class AuthApi {
     public static void logout() {
         refreshToken = null;
         accessToken = null;
-        File file = new File(System.getProperty("user.home"), ".spotlock/refreshtoken.txt");
-        file.delete();
+        String os = Main.getOS();
+        File tokenFile;
+        if (os.equals("windows")) {
+            tokenFile = new File(System.getenv("APPDATA") + "/SpotLock/token");
+        } else if (os.equals("linux")) {
+            tokenFile = new File(System.getProperty("user.home"), ".spotlock/token");
+        } else {
+            tokenFile = new File("not existing directory");
+        }
+        tokenFile.delete();
     }
 
     public static boolean loggedIn() {
@@ -179,11 +187,14 @@ public class AuthApi {
         } else {
             tokenFile = new File("not existing directory");
         }
+        System.out.println(tokenFile.toURI());
         if (tokenFile.exists() || tokenFile.getParentFile().mkdirs()) {
             String tokenencrypted = Base64.encodeBase64String(token.getBytes());
             PrintWriter writer = new PrintWriter(tokenFile, "UTF-8");
             writer.println(tokenencrypted);
             writer.close();
+        } else if (tokenFile.getParentFile().exists() && !tokenFile.exists()) {
+            tokenFile.createNewFile();
         } else if (!tokenFile.canWrite()) {
             System.err.println("no writing permissions for saving token");
         }

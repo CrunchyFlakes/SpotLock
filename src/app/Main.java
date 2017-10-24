@@ -1,7 +1,6 @@
 package app;
 
 import app.auth.AuthApi;
-import de.codecentric.centerdevice.javafxsvg.SvgImageLoaderFactory;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
