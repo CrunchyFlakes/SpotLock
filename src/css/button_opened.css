@@ -16,6 +16,7 @@
 }
 
 .button:hover {
+    -fx-background-image: url('./spotlock_lock_opened_hover.png');
     -fx-background-size: 85;
     -fx-background-repeat: stretch;
     -fx-background-position: center center;
