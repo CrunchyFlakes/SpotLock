@@ -186,6 +186,7 @@ public class AuthApi {
             tokenFile = new File(System.getProperty("user.home"), ".spotlock/token");
         } else {
             tokenFile = new File("not existing directory");
+            return;
         }
         System.out.println(tokenFile.toURI());
         if (tokenFile.exists() || tokenFile.getParentFile().mkdirs()) {
@@ -210,6 +211,7 @@ public class AuthApi {
             tokenFile = new File(System.getProperty("user.home"), ".spotlock/token");
         } else {
             tokenFile = new File("not existing file");
+            return;
         }
         if (tokenFile.exists()) {
             String encrypted = new BufferedReader(new FileReader(tokenFile)).readLine();
