@@ -4,6 +4,7 @@ import app.auth.AuthApi;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
@@ -17,11 +18,16 @@ import java.io.IOException;
  */
 public class LockController {
 
+    private String version = "1.0";
+
     private int volume;
 
     private boolean loggedIn;
 
     private boolean locked = false;
+
+    @FXML
+    private Label versionLabel;
 
     @FXML
     private MenuButton menuButton;
@@ -33,6 +39,7 @@ public class LockController {
     private Button lockButton;
 
     public void initializingthis() {
+        versionLabel.setText(version);
         new Thread(new Runnable() {
             public void run() {
                 try {
