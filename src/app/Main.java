@@ -35,11 +35,11 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         String rawos = System.getProperty("os.name").toLowerCase();
-        if (rawos.indexOf("win") >= 0) {
+        if (rawos.contains("win")) {
             os = "windows";
-        } else if (rawos.indexOf("nux") >= 0) {
+        } else if (rawos.contains("nux")) {
             os = "linux";
-        } else if (rawos.indexOf("mac") >= 0) {
+        } else if (rawos.contains("mac")) {
             os = "mac";
             os = "unsupported";
         } else {

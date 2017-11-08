@@ -108,35 +108,37 @@ public class LockController {
         if (!locked) {
             lockButton.getStylesheets().clear();
             lockButton.getStylesheets().add("/css/button_locked.css");
-            System.out.println("locked");
             try {
                 volume = Api.getPlaybackInfo().getJSONObject("device").getInt("volume_percent");
-            } catch (IOException e) {
-                e.printStackTrace();
+                locked = true;
+                new Thread(new Runnable() {
+                    public void run() {
+                        while (locked) {
+                            try {
+                                Api.setVolume(volume);
+                                Thread.sleep(5000);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+
+                    }
+                }).start();
+                System.out.println("locked");
+            } catch (Exception e) {
+                System.err.println("couldnt find playback device");
+                locked = false;
+                lockButton.getStylesheets().clear();
+                lockButton.getStylesheets().add("/css/button_opened_failed.css");
             }
-            locked = true;
         } else {
             locked = false;
             lockButton.getStylesheets().clear();
             lockButton.getStylesheets().add("/css/button_opened.css");
             System.out.println("unlocked");
         }
-
-        new Thread(new Runnable() {
-            public void run() {
-                while (locked) {
-                    try {
-                        Api.setVolume(volume);
-                        Thread.sleep(5000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-
-            }
-        }).start();
     }
 
     protected void login() {
