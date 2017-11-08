@@ -1,0 +1,34 @@
+.button {
+    -fx-background-image: url('./spotlock_lock_opened.png');
+    -fx-background-size: 85;
+    -fx-background-repeat: stretch;
+    -fx-background-position: center center;
+    -fx-background-color: transparent;
+    -fx-background-radius: 5em;
+    -fx-min-width: 125;
+    -fx-min-height: 125;
+    -fx-max-width: 125;
+    -fx-max-height: 125;
+    -fx-font-size: 18;
+    -fx-border-color: #F25056;
+    -fx-border-radius: 75;
+    -fx-border-width: 3;
+}
+
+.button:hover {
+    -fx-background-image: url('./spotlock_lock_opened_hover.png');
+    -fx-background-size: 85;
+    -fx-background-repeat: stretch;
+    -fx-background-position: center center;
+    -fx-background-color: transparent;
+    -fx-background-radius: 5em;
+    -fx-min-width: 125;
+    -fx-min-height: 125;
+    -fx-max-width: 125;
+    -fx-max-height: 125;
+    -fx-font-size: 18;
+    -fx-border-color: #F4676C;
+    -fx-border-radius: 75;
+    -fx-border-width: 3;
+    -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 7,0.2,0,0 );
+}
