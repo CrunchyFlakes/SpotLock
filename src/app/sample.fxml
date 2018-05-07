@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
@@ -21,5 +22,14 @@
             </items>
         </MenuButton>
       <Label fx:id="versionLabel" alignment="CENTER_RIGHT" layoutX="334.0" layoutY="261.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="52.0" text="Version" textAlignment="RIGHT" />
+      <Pane layoutX="108.0" layoutY="236.0" prefHeight="50.0" prefWidth="200.0">
+         <children>
+            <Label alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="35.0" layoutY="2.0" prefHeight="25.0" text="Password Protection" textAlignment="CENTER" textFill="DARKGRAY">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <PasswordField fx:id="passwordField" layoutX="18.0" layoutY="24.0" onAction="#passwordFieldHandler" prefHeight="25.0" stylesheets="@../css/password_field_unlocked.css" />
+         </children>
+      </Pane>
     </children>
 </Pane>

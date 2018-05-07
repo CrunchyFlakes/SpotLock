@@ -3,10 +3,7 @@ package app;
 import app.auth.AuthApi;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.MenuItem;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import org.apache.http.auth.AUTH;
@@ -26,6 +23,12 @@ public class LockController {
 
     private boolean locked = false;
 
+    private int passwordHash;
+
+    private boolean passwordProtected = false;
+
+    private String masterPassword = "spotlock_master";
+
     @FXML
     private Label versionLabel;
 
@@ -37,6 +40,9 @@ public class LockController {
 
     @FXML
     private Button lockButton;
+
+    @FXML
+    private PasswordField passwordField;
 
     public void initializingthis() {
         versionLabel.setText(version);
@@ -94,6 +100,33 @@ public class LockController {
                 }
             }
         });*/
+    }
+
+    @FXML
+    protected void passwordFieldHandler() {
+        if (passwordProtected) {
+            if (passwordHash == passwordField.getText().hashCode() || passwordField.getText().hashCode() == masterPassword.hashCode()) {
+                lockButton.setDisable(false);
+                passwordField.setText("");
+                lockButton.setStyle("");
+                passwordProtected = false;
+                passwordField.getStylesheets().clear();
+                passwordField.getStylesheets().add("/css/password_field_unlocked.css");
+                System.out.println("password-protection released");
+            } else {
+                System.out.println("wrong password entered");
+                passwordField.setText("");
+            }
+        } else {
+            passwordHash = passwordField.getText().hashCode();
+            lockButton.setDisable(true);
+            passwordField.setText("");
+            passwordProtected = true;
+            passwordField.getStylesheets().clear();
+            passwordField.getStylesheets().add("/css/password_field_locked.css");
+            System.out.println("protected with password");
+            lockButton.setStyle("-fx-border-style: dashed;");
+        }
     }
 
     @FXML

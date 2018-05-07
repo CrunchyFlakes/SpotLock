@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/PartySpotifyClient.iml" filepath="$PROJECT_DIR$/PartySpotifyClient.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SpotLock.iml" filepath="$PROJECT_DIR$/SpotLock.iml" />
     </modules>
   </component>
 </project>
