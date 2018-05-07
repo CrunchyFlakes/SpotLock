@@ -15,7 +15,7 @@ import java.io.IOException;
  */
 public class LockController {
 
-    private String version = "1.0";
+    private String version = "1.1";
 
     private int volume;
 
